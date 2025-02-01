@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class TaskInputScreen extends StatefulWidget {
+  const TaskInputScreen({super.key});
+
   @override
   _TaskInputScreenState createState() => _TaskInputScreenState();
 }
@@ -43,23 +47,23 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Task Input")),
+      appBar: AppBar(title: const Text("Task Input")),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _taskController,
-              decoration: InputDecoration(labelText: 'Enter Task'),
+              decoration: const InputDecoration(labelText: 'Enter Task'),
             ),
             TextField(
               controller: _priorityController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: 'Enter Priority (Low/Medium/High)'),
             ),
             ElevatedButton(
               onPressed: _submitTask,
-              child: Text('Add Task'),
+              child: const Text('Add Task'),
             ),
             if (_taskName != null && _priority != null)
               Text('Task: $_taskName, Priority: $_priority'),
