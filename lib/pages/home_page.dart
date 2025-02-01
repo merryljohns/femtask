@@ -7,6 +7,14 @@ class HomePage extends StatefulWidget {
 
 }
 class _HomePageState extends State<HomePage> {
+  void addNewExpense(){
+    showDialog(
+      context: context,
+      builder: (context)=>const AlertDialog(
+        title: Text('add new expense'),
+      ),
+    );
+    }
     @override
     Widget build(BuildContext context) {
         return Scaffold(
