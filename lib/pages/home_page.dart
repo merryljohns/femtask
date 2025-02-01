@@ -1,4 +1,8 @@
+import 'package:femtask/components/expense_tile.dart';
+import 'package:femtask/models/expense_data.dart';
+import 'package:femtask/models/expense_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -65,6 +69,11 @@ class _HomePageState extends State<HomePage> {
   //cancel
   void cancel() {
     Navigator.pop(context);
+    clear();
+  }
+  void clear() {
+    newExpenseNameController.clear();
+    newExpenseAmountController.clear();
   }
 
   @override
@@ -80,11 +89,11 @@ class _HomePageState extends State<HomePage> {
           //weekly summary
           //expense list
           ListView.builder(
-            itemCount: value.getAllExpenseList().length,
+            itemCount: value.getAllExp().length,
             itemBuilder: (context, index) => ExpenseTile(
-              name: value.getAllExpenseList()[index].name,
-              amount: value.getAllExpenseList()[index].amount,
-              dateTime: value.getAllExpenseList()[index].dateTime,
+              name: value.getAllExp()[index].name,
+              amount: value.getAllExp()[index].amount,
+              dateTime: value.getAllExp()[index].dateTime,
             ),
           )
         ]),
