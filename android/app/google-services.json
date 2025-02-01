@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "614428106089",
+    "project_id": "taskmanager-83e1b",
+    "storage_bucket": "taskmanager-83e1b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614428106089:android:bab13daf5299c1ea1231f8",
+        "android_client_info": {
+          "package_name": "com.merryl.femtask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7xuXQdUx3aZvDk5TSs9xFBfkKwOBTvAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
