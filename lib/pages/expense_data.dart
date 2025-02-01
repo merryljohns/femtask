@@ -1,5 +1,5 @@
 import 'package:femtask/models/expense_item.dart';
-import 'package:femtask/pages/expense_item.dart';
+
 
 class ExpenseData {
   List<ExpenseItem> expenselist = [];
@@ -41,9 +41,9 @@ class ExpenseData {
   }
 
 // get date of closest sunday
-  DateTime weekStart() {
+  DateTime? weekStart() {
     DateTime? start;
-    DateTime today= DateTime.now()
+    DateTime today= DateTime.now();
     for (int i=0; i<7;i++)
     {
       if (dayname(today.subtract(Duration(days:i)))=="Sun")
@@ -51,7 +51,7 @@ class ExpenseData {
         start=today.subtract(Duration(days:i));
       }
     } 
-    return start
+    return start;
 
   }
 
@@ -90,6 +90,8 @@ class ExpenseData {
         dailyExpSummary.addAll({date: amount});
       }
       return dailyExpSummary;
+      
+
     }
   }
 }
