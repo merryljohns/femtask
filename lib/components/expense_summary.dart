@@ -1,6 +1,6 @@
 import 'package:femtask/bar%20graph/bar_graph.dart';
 import 'package:flutter/material.dart';
-import 'package:femtask/pages/expense_data.dart';
+import 'package:femtask/models/expense_data.dart';
 import 'package:provider/provider.dart';
 import 'package:femtask/datetime/date_time_helper.dart';
 
