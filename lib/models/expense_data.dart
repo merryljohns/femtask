@@ -76,22 +76,23 @@ class ExpenseData {
 
 // daily exp total
 
-  Map<String, double> calculateDailyExpense() {
-    Map<String, double> dailyExpSummary = {};
+  Map<String, double> calculateDailyExpenseSummary() {
+    Map<String, double> dailyExpenseSummary = {};
     for (var exp in expenselist) {
       String date = convert(exp.dateTime);
       double amount = double.parse(exp.amount);
 
-      if (dailyExpSummary.containsKey(date)) {
-        double curAmt = dailyExpSummary[date]!;
+      if (dailyExpenseSummary.containsKey(date)) {
+        double curAmt = dailyExpenseSummary[date]!;
         curAmt += amount;
-        dailyExpSummary[date] = curAmt;
+        dailyExpenseSummary[date] = curAmt;
       } else {
-        dailyExpSummary.addAll({date: amount});
+        dailyExpenseSummary.addAll({date: amount});
       }
-      return dailyExpSummary;
+      
       
 
     }
+    return dailyExpenseSummary;
   }
 }
