@@ -4,7 +4,7 @@ import 'package:femtask/models/expense_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';  // Import GetX
 import 'package:femtask/controllers/expense_controller.dart';
-import 'package:provider/provider.dart';  // Import ExpenseController
+import 'package:provider/src/provider.dart';  // Import ExpenseController
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,11 +17,7 @@ class _HomePageState extends State<HomePage> {
   final newExpenseNameController = TextEditingController();
   final newExpenseAmountController = TextEditingController();
 
-  @override
-  void initState(){
-    super.initState();
-    Provider.of<ExpenseData>(context, listen:false).prepareData();
-  }
+ 
 
   // Add new expense dialog
   void addNewExpense(BuildContext context) {
@@ -91,12 +87,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  // Provider.of<ExpenseData>(context, listen:false).prepareData();
+  }
+  @override
   Widget build(BuildContext context) {
     return GetX<ExpenseController>(
       init: ExpenseController(),  // Initialize the controller
       builder: (controller) {
         return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 127, 215, 234),
+          backgroundColor: const Color.fromARGB(255, 181, 209, 242),
           floatingActionButton: FloatingActionButton(
             onPressed: () => addNewExpense(context),
             child: const Icon(Icons.add),
