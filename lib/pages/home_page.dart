@@ -1,80 +1,78 @@
 import 'package:femtask/components/expense_tile.dart';
-import 'package:femtask/models/expense_data.dart';
 import 'package:femtask/models/expense_item.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';  // Import GetX
+import 'package:femtask/controllers/expense_controller.dart';  // Import ExpenseController
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  // text controllers
+  // Text controllers
   final newExpenseNameController = TextEditingController();
   final newExpenseAmountController = TextEditingController();
 
-  //add new expense
-  void addNewExpense() {
+  // Add new expense dialog
+  void addNewExpense(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Add new expense'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  //expense name
-                  TextField(
-                    controller: newExpenseNameController,
-                    decoration: const InputDecoration(labelText: 'Expense Name'),
-                  ),
-
-                  //expense amount
-                  TextField(
-                    controller: newExpenseAmountController,
-                    decoration: const InputDecoration(labelText: 'Expense Amount'),
-                    keyboardType: TextInputType.number, // For numeric input
-                  )
-                ],
-              ),
-              actions: [
-                //save button
-                MaterialButton(
-                  onPressed: save,
-                  child: const Text('Save'),
-                ),
-                //cancel button
-                MaterialButton(
-                  onPressed: cancel,
-                  child: const Text('Cancel'),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Add new expense'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Expense name
+            TextField(
+              controller: newExpenseNameController,
+              decoration: const InputDecoration(labelText: 'Expense Name'),
+            ),
+            // Expense amount
+            TextField(
+              controller: newExpenseAmountController,
+              decoration: const InputDecoration(labelText: 'Expense Amount'),
+              keyboardType: TextInputType.number, // Numeric input
+            ),
+          ],
+        ),
+        actions: [
+          // Save button
+          MaterialButton(
+            onPressed: save,
+            child: const Text('Save'),
+          ),
+          // Cancel button
+          MaterialButton(
+            onPressed: cancel,
+            child: const Text('Cancel'),
+          ),
+        ],
+      ),
+    );
   }
 
-  //save
+  // Save expense
   void save() {
-    //create expense item
+    // Create ExpenseItem
     ExpenseItem newExpense = ExpenseItem(
       name: newExpenseNameController.text,
-      amount: double.tryParse(newExpenseAmountController.text) ?? 0.0, // Parse to double
+      amount: double.tryParse(newExpenseAmountController.text) ?? 0.0,  // Parse amount to double
       dateTime: DateTime.now(),
-    ); //ExpenseItem
-    //add the new expense
-    Provider.of<ExpenseData>(context, listen: false).addNewExpense(newExpense);
+    );
+    
+    // Access the ExpenseController and add the new expense
+    Get.find<ExpenseController>().addNewExpense(newExpense);
 
-    Navigator.pop(context);
+    // Close dialog and clear text fields
+    Get.back();
     clear();
   }
 
-  //cancel
+  // Cancel action
   void cancel() {
-    Navigator.pop(context);
+    Get.back();
     clear();
   }
 
+  // Clear text controllers
   void clear() {
     newExpenseNameController.clear();
     newExpenseAmountController.clear();
@@ -82,37 +80,55 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ExpenseData>(
-      builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.grey[300],
-        floatingActionButton: FloatingActionButton(
-          onPressed: addNewExpense,
-          child: const Icon(Icons.add),
-        ),
-        body: Column(
-          children: [
-            // weekly summary
-            // Replace this with actual summary widgets
-            Container(
-              height: 100, // Example height for weekly summary
-              color: Colors.blue,
-              child: Center(child: Text('Weekly Summary')),
-            ),
-            
-            // Expense list
-            Expanded(  // Use Expanded to make the list scrollable
-              child: ListView.builder(
-                itemCount: value.getAllExp().length,
-                itemBuilder: (context, index) => ExpenseTile(
-                  name: value.getAllExp()[index].name,
-                  amount: value.getAllExp()[index].amount.toString(),  // Convert amount to string
-                  dateTime: value.getAllExp()[index].dateTime,
+    return GetX<ExpenseController>(
+      init: ExpenseController(),  // Initialize the controller
+      builder: (controller) {
+        return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 127, 215, 234),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => addNewExpense(context),
+            child: const Icon(Icons.add),
+          ),
+          body: Column(
+            children: [
+              Image.asset(
+                'assets/imagesweekly-removebg-preview.png',
+                height: 150, // Adjust height as needed
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              // Weekly summary placeholder
+              Container(
+                height: 100,  // Example height for weekly summary
+                color: Colors.blue,
+                child: Center(child: Text(
+                  'Weekly Summary',
+                  style: TextStyle(
+                    color:Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
+              
+              // Expense list
+              Expanded(
+                child: ListView.builder(
+                  itemCount: controller.getAllExp.length,
+                  itemBuilder: (context, index) {
+                    return ExpenseTile(
+                      name: controller.getAllExp[index].name,
+                      amount: controller.getAllExp[index].amount.toString(),  // Convert amount to string
+                      dateTime: controller.getAllExp[index].dateTime,
+                    );
+                  },
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
+

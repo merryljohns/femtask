@@ -30,9 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    assets:
+    - assets/imagesweekly-removebg-preview.png
   intl: ^0.17.0
   hive: ^2.2.3
   provider: ^6.0.0
+  get: ^4.6.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
