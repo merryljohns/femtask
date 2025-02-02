@@ -45,30 +45,22 @@ flutter run
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![![s1](https://github.com/user-attachments/assets/c374e23d-271e-4196-b9c7-d76008204763)
+](Add screenshot 1 here with proper name)
+home page
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![![s2](https://github.com/user-attachments/assets/e454919f-c4ee-4394-90fe-e86af4ba058d)
+](Add screenshot 2 here with proper name)
+add expense dialogue box
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![![s3](https://github.com/user-attachments/assets/7d7053f0-cb75-4841-9c20-9df706598965)
+](Add screenshot 3 here with proper name)
+expense display
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
 # Build Photos
-![Team](Add photo of your team here)
+![![WIN_20250202_10_36_35_Pro](https://github.com/user-attachments/assets/3258fb7b-eae4-4515-9f40-981c757762cc)
+](Add photo of your team here)
 
 
 ![Components](Add photo of your components here)
