@@ -27,12 +27,15 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   //expense name
                   TextField(
-                    controller: newExpenseAmountController,
+                    controller: newExpenseNameController,
+                    decoration: const InputDecoration(labelText: 'Expense Name'),
                   ),
 
                   //expense amount
                   TextField(
                     controller: newExpenseAmountController,
+                    decoration: const InputDecoration(labelText: 'Expense Amount'),
+                    keyboardType: TextInputType.number, // For numeric input
                   )
                 ],
               ),
@@ -56,7 +59,7 @@ class _HomePageState extends State<HomePage> {
     //create expense item
     ExpenseItem newExpense = ExpenseItem(
       name: newExpenseNameController.text,
-      amount: newExpenseAmountController.text,
+      amount: double.tryParse(newExpenseAmountController.text) ?? 0.0, // Parse to double
       dateTime: DateTime.now(),
     ); //ExpenseItem
     //add the new expense
@@ -71,6 +74,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     clear();
   }
+
   void clear() {
     newExpenseNameController.clear();
     newExpenseAmountController.clear();
@@ -85,18 +89,29 @@ class _HomePageState extends State<HomePage> {
           onPressed: addNewExpense,
           child: const Icon(Icons.add),
         ),
-        body: ListView(children: [
-          //weekly summary
-          //expense list
-          ListView.builder(
-            itemCount: value.getAllExp().length,
-            itemBuilder: (context, index) => ExpenseTile(
-              name: value.getAllExp()[index].name,
-              amount: value.getAllExp()[index].amount,
-              dateTime: value.getAllExp()[index].dateTime,
+        body: Column(
+          children: [
+            // weekly summary
+            // Replace this with actual summary widgets
+            Container(
+              height: 100, // Example height for weekly summary
+              color: Colors.blue,
+              child: Center(child: Text('Weekly Summary')),
             ),
-          )
-        ]),
+            
+            // Expense list
+            Expanded(  // Use Expanded to make the list scrollable
+              child: ListView.builder(
+                itemCount: value.getAllExp().length,
+                itemBuilder: (context, index) => ExpenseTile(
+                  name: value.getAllExp()[index].name,
+                  amount: value.getAllExp()[index].amount.toString(),  // Convert amount to string
+                  dateTime: value.getAllExp()[index].dateTime,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

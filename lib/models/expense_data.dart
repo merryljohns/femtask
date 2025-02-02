@@ -80,7 +80,7 @@ class ExpenseData {
     Map<String, double> dailyExpenseSummary = {};
     for (var exp in expenselist) {
       String date = convert(exp.dateTime);
-      double amount = double.parse(exp.amount);
+      double amount = double.parse(exp.amount as String);
 
       if (dailyExpenseSummary.containsKey(date)) {
         double curAmt = dailyExpenseSummary[date]!;
