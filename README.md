@@ -63,27 +63,19 @@ expense display
 ](Add photo of your team here)
 
 
-![Components](Add photo of your components here)
-*List out all components shown*
 
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
+[https://drive.google.com/file/d/1vYvQ-fGVh8CdP5HgQWgpIwc6Yhsyly8c/view?usp=drive_link]
 *Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Avanthika Sreejith: backend
+- Merryl Johns: Frontend
+- Sneha Shabith: backend
 
 ---
 Made with ❤️ at TinkerHub
