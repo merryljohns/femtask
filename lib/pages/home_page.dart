@@ -1,15 +1,27 @@
 import 'package:femtask/components/expense_tile.dart';
+import 'package:femtask/models/expense_data.dart';
 import 'package:femtask/models/expense_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';  // Import GetX
-import 'package:femtask/controllers/expense_controller.dart';  // Import ExpenseController
+import 'package:femtask/controllers/expense_controller.dart';
+import 'package:provider/provider.dart';  // Import ExpenseController
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   // Text controllers
   final newExpenseNameController = TextEditingController();
   final newExpenseAmountController = TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    Provider.of<ExpenseData>(context, listen:false).prepareData();
+  }
 
   // Add new expense dialog
   void addNewExpense(BuildContext context) {
@@ -91,12 +103,6 @@ class HomePage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Image.asset(
-                'assets/imagesweekly-removebg-preview.png',
-                height: 150, // Adjust height as needed
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
               // Weekly summary placeholder
               Container(
                 height: 100,  // Example height for weekly summary
@@ -118,7 +124,7 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ExpenseTile(
                       name: controller.getAllExp[index].name,
-                      amount: controller.getAllExp[index].amount.toString(),  // Convert amount to string
+                      amount: controller.getAllExp[index].amount,  // Convert amount to string
                       dateTime: controller.getAllExp[index].dateTime,
                     );
                   },

@@ -1,21 +1,38 @@
 import 'package:femtask/models/expense_item.dart';
+import "../data/database.dart";
+import 'dart:math';
+import 'package:flutter/material.dart';
 
-
-class ExpenseData {
+class ExpenseData extends ChangeNotifier {
   List<ExpenseItem> expenselist = [];
 // list of all exp
   List<ExpenseItem> getAllExp() {
     return expenselist;
   }
+  // after getAllExp
+// import "../data/hive_database.dart"
+final db = HiveDataBase();
+void prepareData() {
+  if (db.readData().isNotEmpty) {
+    expenselist = db.readData();
+  }
+}
+
 
 // add new expense
   void addNewExpense(ExpenseItem newexp) {
     expenselist.add(newexp);
+
+    notifyListeners();
+    db.savedata(expenselist);
   }
 
 // delete an expense
   void deleteExpense(ExpenseItem delexp) {
     expenselist.remove(delexp);
+    
+    notifyListeners();
+    db.savedata(expenselist);
   }
 
 // fn to get day of the week

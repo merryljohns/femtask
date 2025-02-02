@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ExpenseTile extends StatelessWidget {
   final String name;
-  final String amount;
+  final double amount;
   final DateTime dateTime;
 
   const ExpenseTile({
